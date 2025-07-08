@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drowsiness Detection System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Real-time Drowsiness Detection</h1>
+      <p class="subtitle">Using Eye Aspect Ratio (EAR) with MediaPipe and Flask</p>
+    </header>
+
+    <div class="dashboard">
+      <div class="panel">
+        <div class="controls">
+          <button id="toggle-btn" class="btn start-btn">Start Detection</button>
+        </div>
+
+        <h2>Live Video Feed</h2>
+        <div class="video-container">
+          <img src="{{ url_for('video_feed') }}" id="video-feed" alt="Live Video Feed">
+        </div>
+
+        <div class="status-container">
+          <div class="status-box">
+            <div>Current EAR</div>
+            <div class="status-value ear-value" id="current-ear">0.00</div>
+          </div>
+          <div class="status-box">
+            <div>System Status</div>
+            <div class="status-value status-ready" id="status-text">READY</div>
+          </div>
+        </div>
+
+        <div class="alert-box" id="alert-box">
+          <h2>⚠️ DROWSINESS DETECTED! ⚠️</h2>
+          <p>Please take a break or pull over if driving</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>EAR Monitoring</h2>
+        <div class="chart-container">
+          <canvas id="ear-chart"></canvas>
+        </div>
+
+        <div class="legend">
+          <div class="legend-item">
+            <div class="legend-color legend-ear"></div>
+            <div>EAR Value</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color legend-threshold"></div>
+            <div>Threshold (0.20)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
